@@ -11,8 +11,8 @@ class Program
         int totalLines = CountLinesInCSharpFiles(folderPath);
 
         Console.WriteLine($"Total lines in C# files: {totalLines}");
-        // Wait for the user to press Enter
-        Console.ReadLine();
+        
+      //  Console.ReadLine();
     }
 
     static int CountLinesInCSharpFiles(string folderPath)
@@ -24,7 +24,7 @@ class Program
 
         foreach (string csFile in csFiles)
         {
-            // Skip files in the "bin" directory
+            // Skip files in the "bin/debug/release" directories
             if ((csFile.ToLower().Contains("\\bin\\")) || (csFile.ToLower().Contains("\\debug\\")) || (csFile.ToLower().Contains("\\release\\")))
             {
                 continue;
@@ -32,6 +32,9 @@ class Program
 
             // Read the contents of the file
             string[] fileLines = File.ReadAllLines(csFile);
+
+            Console.WriteLine($"Reading from: {csFile}");
+
 
             // Increment the total lines count by the number of lines in the file
             totalLines += fileLines.Length;
